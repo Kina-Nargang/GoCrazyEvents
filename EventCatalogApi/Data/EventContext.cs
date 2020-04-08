@@ -1,4 +1,5 @@
 ﻿using EventCatalogApi.Domain;
+using EventCatalogApi.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace EventCatalogApi.Data
         public DbSet<EventOrganizer> EventOrganizers { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
         public DbSet<EventDetail> EventDatails { get; set; }
+        public DbSet<EventInfoViewModel> EventInfoView { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -167,6 +169,82 @@ namespace EventCatalogApi.Data
                  .HasForeignKey(d => d.EventTypeId);
             });
 
+            // EventInfoView
+            modelBuilder.Entity<EventInfoViewModel>(v =>
+            {
+                v.HasNoKey();
+                v.ToView("EventInfoView");
+
+                v.Property(d => d.Id)
+                 .IsRequired();
+
+                v.Property(d => d.EventName)
+                 .IsRequired()
+                 .HasMaxLength(100);
+
+                v.Property(d => d.isPublic)
+                 .IsRequired()
+                 .HasMaxLength(10);
+
+                v.Property(d => d.isFree)
+                 .IsRequired()
+                 .HasMaxLength(10);
+
+                v.Property(d => d.PictureUrl)
+                 .HasMaxLength(200);
+
+                v.Property(d => d.Price)
+                 .IsRequired();
+
+                v.Property(d => d.StartDate)
+                 .IsRequired();
+
+                v.Property(d => d.EndDate)
+                 .IsRequired();
+
+                v.Property(d => d.CreatedDate)
+                .IsRequired();
+
+                v.Property(d => d.Description)
+                 .IsRequired()
+                 .HasDefaultValue(1000);
+
+                v.Property(o => o.OrganizerName)
+                 .IsRequired()
+                 .HasMaxLength(150);
+
+                v.Property(o => o.OrganizerDescription)
+                 .IsRequired()
+                 .HasMaxLength(1000);
+
+                v.Property(l => l.LocationName)
+                 .IsRequired()
+                 .HasMaxLength(100);
+
+                v.Property(l => l.City)
+                 .IsRequired()
+                 .HasMaxLength(50);
+
+                v.Property(l => l.State)
+                 .IsRequired()
+                 .HasMaxLength(50);
+
+                v.Property(l => l.Country)
+                 .IsRequired()
+                 .HasMaxLength(100);
+
+                v.Property(l => l.ZipCode)
+                 .IsRequired()
+                 .HasMaxLength(50);
+
+                v.Property(l => l.Address)
+                 .IsRequired()
+                 .HasMaxLength(200);
+
+                v.Property(l => l.Address2)
+                 .HasMaxLength(200);
+
+            });
         }
     }
 }

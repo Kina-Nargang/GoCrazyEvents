@@ -43,15 +43,15 @@ namespace EventCatalogApi.Data
                 context.SaveChanges();
             }
 
-            // Table
+            // Table EventDatails
             if (!context.EventDatails.Any())
             {
                 context.EventDatails.AddRange(GetConfiguredEventDatails());
                 context.SaveChanges();
             }
-
         }
 
+    
         public static IEnumerable<EventCategory> GetConfiguredEventCategories()
         {
             return new List<EventCategory>

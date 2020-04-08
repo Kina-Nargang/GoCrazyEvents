@@ -4,14 +4,16 @@ using EventCatalogApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventCatalogApi.Migrations
 {
     [DbContext(typeof(EventContext))]
-    partial class EventContextModelSnapshot : ModelSnapshot
+    [Migration("20200408034444_check2")]
+    partial class check2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +55,7 @@ namespace EventCatalogApi.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2020, 4, 7, 20, 49, 48, 980, DateTimeKind.Local).AddTicks(4551));
+                        .HasDefaultValue(new DateTime(2020, 4, 7, 20, 44, 43, 910, DateTimeKind.Local).AddTicks(7318));
 
                     b.Property<string>("Description")
                         .IsRequired()
